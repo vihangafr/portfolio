@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vihanga | Web Developer</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind Config for Minimalist Theme -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        background: '#0a0a0a',
+                        surface: '#121212',
+                        border: '#262626',
+                        textMain: '#ededed',
+                        textMuted: '#a3a3a3',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #ededed;
+        }
+        /* Minimalist scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #262626; 
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #404040; 
+        }
+        
+        /* Modern smooth animations */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(40px) scale(0.98);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .reveal-up.is-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+        .delay-400 { transition-delay: 400ms; }
+
+        /* Card Hover */
+        .card-hover {
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-6px);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-white selection:text-black flex flex-col min-h-screen">
+
+    <!-- Minimal Header -->
+    <nav class="fixed w-full z-50 top-0 backdrop-blur-md bg-background/80 border-b border-border">
+        <div class="max-w-5xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-xl font-semibold tracking-tight text-textMain">
+                        Vihanga.
+                    </a>
+                </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#about" class="text-textMuted hover:text-white transition-colors text-sm">About</a>
+                    <a href="#skills" class="text-textMuted hover:text-white transition-colors text-sm">Skills</a>
+                    <a href="#contact" class="text-textMuted hover:text-white transition-colors text-sm">Contact</a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-textMuted hover:text-white focus:outline-none">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-surface border-b border-border">
+            <div class="px-4 pt-4 pb-6 space-y-4">
+                <a href="#about" class="block text-sm text-textMuted hover:text-white">About</a>
+                <a href="#skills" class="block text-sm text-textMuted hover:text-white">Skills</a>
+                <a href="#contact" class="block text-sm text-textMuted hover:text-white">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow pt-20">
+        
+        <section id="hero" class="flex items-center min-h-[85vh]">
+            <div class="max-w-5xl mx-auto px-6 lg:px-8 w-full py-12 md:py-20">
+                <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-16 md:gap-8">
+                    
+                    <!-- Text Content -->
+                    <div class="w-full md:w-3/5 flex flex-col items-center text-center md:items-start md:text-left">
+                        <div class="inline-flex items-center space-x-2 mb-8 reveal-up">
+                            <span class="relative flex h-2 w-2">
+                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-neutral-400 opacity-75"></span>
+                              <span class="relative inline-flex rounded-full h-2 w-2 bg-neutral-500"></span>
+                            </span>
+                            <span class="text-xs text-textMuted tracking-wider uppercase">Available for work</span>
+                        </div>
+                        
+                        <h1 class="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-medium tracking-tight text-white mb-6 leading-tight reveal-up delay-100">
+                            I build digital <br class="hidden lg:block"/> solutions. <br/>
+                            <span class="text-textMuted text-3xl sm:text-4xl md:text-4xl lg:text-5xl">Web Apps & Bots.</span>
+                        </h1>
+                        
+                        <p class="text-base sm:text-lg text-textMuted mb-10 max-w-lg leading-relaxed font-light reveal-up delay-200">
+                            I'm Vihanga, a 17-year-old developer from Sri Lanka coding since 2022. I specialize in full-stack web development, intelligent chat bots, and data scraping solutions.
+                        </p>
+                        
+                        <div class="flex flex-wrap justify-center md:justify-start gap-4 items-center reveal-up delay-300">
+                            <a href="#contact" class="px-6 py-3 bg-white text-black text-sm font-medium rounded hover:bg-neutral-200 hover:scale-105 active:scale-95 transition-all duration-300">
+                                Get in touch
+                            </a>
+                            <a href="https://github.com/vihangafr" target="_blank" class="px-6 py-3 bg-transparent border border-border text-textMain text-sm font-medium rounded hover:bg-surface hover:scale-105 active:scale-95 transition-all duration-300 flex items-center">
+                                <i class="fab fa-github mr-2"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Photo Container -->
+                    <div class="w-full md:w-2/5 flex justify-center md:justify-end reveal-up delay-400">
+                        <div class="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 group mt-8 md:mt-0">
+                            <!-- Minimalist background offset decoration -->
+                            <div class="absolute inset-0 border border-border rounded-3xl transform translate-x-3 translate-y-3 lg:translate-x-4 lg:translate-y-4 transition-transform duration-500 group-hover:translate-x-5 group-hover:translate-y-5"></div>
+                            
+                            <!-- Main image wrapper -->
+                            <div class="absolute inset-0 bg-surface rounded-3xl overflow-hidden border border-border transform transition-transform duration-500 group-hover:-translate-y-2 z-10">
+                                <!-- Uses /me.png. Fallback provided via onerror if image is missing -->
+                                <img src="/me.png" alt="Vihanga" class="w-full h-full object-cover transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-105" onerror="this.src='https://placehold.co/600x600/121212/a3a3a3?text=Photo'">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="py-24 bg-surface/30 border-y border-border">
+            <div class="max-w-5xl mx-auto px-6 lg:px-8">
+                <div class="mb-16 reveal-up">
+                    <h2 class="text-2xl font-medium tracking-tight text-white mb-2">Expertise</h2>
+                    <p class="text-textMuted text-sm font-light">The tools and technologies I work with.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Web Dev -->
+                    <div class="card-hover p-8 border border-border rounded-xl bg-background hover:border-neutral-600 reveal-up delay-100">
+                        <i class="fas fa-code text-xl text-textMuted mb-6"></i>
+                        <h3 class="text-lg font-medium text-white mb-3">Web Development</h3>
+                        <p class="text-textMuted text-sm font-light leading-relaxed mb-6">
+                            Building clean, responsive, and performant web applications from the ground up.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-surface text-textMuted text-xs rounded border border-border">Node.js</span>
+                            <span class="px-3 py-1 bg-surface text-textMuted text-xs rounded border border-border">Express</span>
+                            <span class="px-3 py-1 bg-surface text-textMuted text-xs rounded border border-border">React</span>
+                            <span class="px-3 py-1 bg-surface text-textMuted text-xs rounded border border-border">Next.js</span>
+                        </div>
+                    </div>
+
+                    <!-- Bot Dev -->
+                    <div class="card-hover p-8 border border-border rounded-xl bg-background hover:border-neutral-600 reveal-up delay-200">
+                        <i class="fas fa-robot text-xl text-textMuted mb-6"></i>
+                        <h3 class="text-lg font-medium text-white mb-3">Bot Automation</h3>
+                        <p class="text-textMuted text-sm font-light leading-relaxed mb-6">
+                            Creating automated workflows and interactive bots for modern communication platforms.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-surface text-textMuted text-xs rounded border border-border">WhatsApp Bots</span>
+                            <span class="px-3 py-1 bg-surface text-textMuted text-xs rounded border border-border">Telegram Bots</span>
+                        </div>
+                    </div>
+
+                    <!-- Web Scraping -->
+                    <div class="card-hover p-8 border border-border rounded-xl bg-background hover:border-neutral-600 reveal-up delay-300">
+                        <i class="fas fa-database text-xl text-textMuted mb-6"></i>
+                        <h3 class="text-lg font-medium text-white mb-3">Web Scraping</h3>
+                        <p class="text-textMuted text-sm font-light leading-relaxed mb-6">
+                            Extracting and parsing data efficiently for analysis and integration.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-surface text-textMuted text-xs rounded border border-border">Puppeteer</span>
+                            <span class="px-3 py-1 bg-surface text-textMuted text-xs rounded border border-border">Cheerio</span>
+                            <span class="px-3 py-1 bg-surface text-textMuted text-xs rounded border border-border">Axios / Fetch</span>
+                        </div>
+                    </div>
+
+                    <!-- Other Skills -->
+                    <div class="card-hover p-8 border border-border rounded-xl bg-background hover:border-neutral-600 reveal-up delay-400">
+                        <i class="fas fa-layer-group text-xl text-textMuted mb-6"></i>
+                        <h3 class="text-lg font-medium text-white mb-3">Additional Skills</h3>
+                        <ul class="space-y-3 text-sm text-textMuted font-light">
+                            <li class="flex items-center"><i class="fas fa-check text-neutral-600 mr-3 text-xs"></i> Advanced Debugging</li>
+                            <li class="flex items-center"><i class="fas fa-check text-neutral-600 mr-3 text-xs"></i> Social Media Marketing (SMM)</li>
+                            <li class="flex items-center"><i class="fas fa-check text-neutral-600 mr-3 text-xs"></i> Technical Support & Helper</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-32">
+            <div class="max-w-5xl mx-auto px-6 lg:px-8 text-center reveal-up">
+                <h2 class="text-3xl font-medium tracking-tight text-white mb-6">Let's connect.</h2>
+                <p class="text-textMuted text-base font-light mb-12 max-w-lg mx-auto">
+                    Have a project in mind, need a custom bot, or just want to chat? Reach out through any of the platforms below.
+                </p>
+
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://wa.me/94782898541" target="_blank" class="px-6 py-3 border border-border rounded-lg flex items-center space-x-3 text-textMuted hover:text-white hover:bg-surface hover:border-neutral-500 hover:-translate-y-1 transition-all duration-300">
+                        <i class="fab fa-whatsapp text-lg"></i>
+                        <span class="text-sm font-medium">WhatsApp</span>
+                    </a>
+                    
+                    <a href="https://t.me/vihanga_ashz" target="_blank" class="px-6 py-3 border border-border rounded-lg flex items-center space-x-3 text-textMuted hover:text-white hover:bg-surface hover:border-neutral-500 hover:-translate-y-1 transition-all duration-300">
+                        <i class="fab fa-telegram text-lg"></i>
+                        <span class="text-sm font-medium">Telegram</span>
+                    </a>
+
+                    <a href="https://instagram.com/viha.nn.ga" target="_blank" class="px-6 py-3 border border-border rounded-lg flex items-center space-x-3 text-textMuted hover:text-white hover:bg-surface hover:border-neutral-500 hover:-translate-y-1 transition-all duration-300">
+                        <i class="fab fa-instagram text-lg"></i>
+                        <span class="text-sm font-medium">Instagram</span>
+                    </a>
+
+                    <a href="https://buymeacoffee.com/vihangayt0" target="_blank" class="px-6 py-3 border border-border rounded-lg flex items-center space-x-3 text-textMuted hover:text-white hover:bg-surface hover:border-neutral-500 hover:-translate-y-1 transition-all duration-300">
+                        <i class="fas fa-coffee text-lg"></i>
+                        <span class="text-sm font-medium">Support Me</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-border py-10 bg-background mt-auto">
+        <div class="max-w-5xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-textMuted text-sm font-light text-center md:text-left">
+                &copy; <span id="year"></span> Vihanga.<br class="md:hidden"/>
+                <span class="text-neutral-600 ml-0 md:ml-2">Sri Lanka</span>
+            </div>
+            <div class="flex space-x-6">
+                <a href="https://github.com/vihangafr" target="_blank" class="text-textMuted hover:text-white transition-colors">
+                    <span class="sr-only">GitHub</span>
+                    <i class="fab fa-github text-lg"></i>
+                </a>
+                <a href="https://instagram.com/viha.nn.ga" target="_blank" class="text-textMuted hover:text-white transition-colors">
+                    <span class="sr-only">Instagram</span>
+                    <i class="fab fa-instagram text-lg"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Set current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile menu toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on click
+        const mobileLinks = menu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Modern Intersection Observer for smooth reveal animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); // Animate only once per load
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-up').forEach((element) => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
