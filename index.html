@@ -37,7 +37,27 @@
                         textMuted: '#a3a3a3',
                     },
                     animation: {
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 3s infinite',
+                        'float-fast': 'float 4s ease-in-out infinite',
+                        'gradient': 'gradient 8s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        gradient: {
+                            '0%, 100%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'left center'
+                            },
+                            '50%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'right center'
+                            },
+                        }
                     }
                 }
             }
@@ -90,21 +110,20 @@
 <body class="antialiased selection:bg-white selection:text-black flex flex-col min-h-screen relative">
 
     <div class="fixed inset-0 bg-grid-pattern pointer-events-none z-0"></div>
-    <div class="fixed top-[-20%] left-[-10%] w-[50%] h-[50%] bg-neutral-800/20 blur-[120px] rounded-full pointer-events-none z-0 animate-pulse-slow"></div>
+    <div class="fixed top-[-20%] left-[-10%] w-[50%] h-[50%] bg-blue-900/10 blur-[120px] rounded-full pointer-events-none z-0 animate-pulse-slow"></div>
+    <div class="fixed bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-purple-900/10 blur-[120px] rounded-full pointer-events-none z-0 animate-pulse-slow delay-300"></div>
 
     <nav class="fixed w-full z-50 top-0 backdrop-blur-xl bg-background/60 border-b border-border transition-all duration-300">
-        <div class="max-w-5xl mx-auto px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 md:h-20">
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="text-xl font-bold tracking-tighter text-textMain flex items-center gap-2 group">
-                        <div class="w-8 h-8 bg-white text-black rounded-lg flex items-center justify-center font-bold group-hover:rotate-6 transition-transform">
-                            <lottie-player data-tgs-src="star.tgs" autoplay loop mode="normal" style="width: 24px; height: 24px;"></lottie-player>
-                        </div>
-                        ihanga.
+                    <!-- Clean Text Logo with Verify Icon -->
+                    <a href="#" class="text-xl font-bold tracking-tighter text-textMain flex items-center gap-1 group transition-transform hover:scale-105">
+                        Vihanga.
                         <lottie-player data-tgs-src="verify.tgs" autoplay loop mode="normal" style="width: 20px; height: 20px;" class="ml-1"></lottie-player>
                     </a>
                 </div>
-                <div class="hidden md:flex space-x-8 items-center bg-surface/50 px-6 py-2 rounded-full border border-border backdrop-blur-md">
+                <div class="hidden md:flex space-x-8 items-center bg-surface/50 px-6 py-2 rounded-full border border-border backdrop-blur-md shadow-lg shadow-black/20">
                     <a href="#about" class="text-textMuted hover:text-white transition-colors text-sm font-medium">About</a>
                     <a href="#skills" class="text-textMuted hover:text-white transition-colors text-sm font-medium">Skills</a>
                     <a href="#projects" class="text-textMuted hover:text-white transition-colors text-sm font-medium">Works</a>
@@ -117,7 +136,7 @@
                 </div>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-surface/95 backdrop-blur-xl border-b border-border absolute w-full">
+        <div id="mobile-menu" class="hidden md:hidden bg-surface/95 backdrop-blur-xl border-b border-border absolute w-full shadow-2xl">
             <div class="px-6 pt-4 pb-6 space-y-4">
                 <a href="#about" class="block text-sm font-medium text-textMuted hover:text-white transition-colors">About</a>
                 <a href="#skills" class="block text-sm font-medium text-textMuted hover:text-white transition-colors">Skills</a>
@@ -127,13 +146,34 @@
         </div>
     </nav>
 
-    <main class="flex-grow pt-24 md:pt-32 z-10">
+    <main class="flex-grow pt-24 md:pt-32 z-10 overflow-hidden">
         <section id="hero" class="flex items-center min-h-[75vh] relative">
-            <div class="max-w-5xl mx-auto px-6 lg:px-8 w-full py-12 md:py-20">
+            
+            <!-- Background Floating Stickers -->
+            <div class="absolute top-[15%] left-[5%] md:left-[10%] w-16 h-16 animate-float opacity-70 rotate-[-10deg] hidden md:block z-0 pointer-events-none">
+                <lottie-player data-tgs-src="anim1.tgs" autoplay loop mode="normal" style="width: 100%; height: 100%;"></lottie-player>
+            </div>
+            <div class="absolute top-[20%] right-[10%] md:right-[15%] w-20 h-20 animate-float-delayed opacity-80 rotate-[15deg] hidden lg:block z-0 pointer-events-none">
+                <lottie-player data-tgs-src="anim2.tgs" autoplay loop mode="normal" style="width: 100%; height: 100%;"></lottie-player>
+            </div>
+            <div class="absolute bottom-[20%] left-[10%] md:left-[15%] w-14 h-14 animate-float-fast opacity-60 rotate-[-5deg] hidden md:block z-0 pointer-events-none">
+                <lottie-player data-tgs-src="anim3.tgs" autoplay loop mode="normal" style="width: 100%; height: 100%;"></lottie-player>
+            </div>
+            <div class="absolute bottom-[25%] right-[5%] md:right-[10%] w-16 h-16 animate-float opacity-75 rotate-[20deg] hidden lg:block z-0 pointer-events-none">
+                <lottie-player data-tgs-src="anim4.tgs" autoplay loop mode="normal" style="width: 100%; height: 100%;"></lottie-player>
+            </div>
+            <div class="absolute top-[40%] right-[2%] md:right-[5%] w-12 h-12 animate-float-fast opacity-50 rotate-[-15deg] hidden xl:block z-0 pointer-events-none">
+                <lottie-player data-tgs-src="anim5.tgs" autoplay loop mode="normal" style="width: 100%; height: 100%;"></lottie-player>
+            </div>
+            <div class="absolute bottom-[10%] right-[25%] md:right-[30%] w-16 h-16 animate-float-delayed opacity-60 rotate-[10deg] hidden md:block z-0 pointer-events-none">
+                <lottie-player data-tgs-src="anim6.tgs" autoplay loop mode="normal" style="width: 100%; height: 100%;"></lottie-player>
+            </div>
+
+            <div class="max-w-6xl mx-auto px-6 lg:px-8 w-full py-12 md:py-20 relative z-10">
                 <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-16 md:gap-8">
                     
-                    <div class="w-full md:w-3/5 flex flex-col items-center text-center md:items-start md:text-left z-10">
-                        <div class="inline-flex items-center space-x-2 mb-6 px-3 py-1.5 rounded-full bg-surface/80 border border-border backdrop-blur-sm reveal-up">
+                    <div class="w-full md:w-3/5 flex flex-col items-center text-center md:items-start md:text-left">
+                        <div class="inline-flex items-center space-x-2 mb-6 px-3 py-1.5 rounded-full bg-surface/80 border border-border backdrop-blur-sm shadow-md reveal-up">
                             <span class="relative flex items-center justify-center h-5 w-5 ml-1">
                                 <lottie-player data-tgs-src="avilable.tgs" autoplay loop mode="normal" style="width: 100%; height: 100%;"></lottie-player>
                             </span>
@@ -142,7 +182,7 @@
                         
                         <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tighter text-white mb-6 leading-[1.1] reveal-up delay-100">
                             I build digital <br class="hidden lg:block"/> solutions. <br/>
-                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-neutral-400 to-neutral-600 text-4xl sm:text-5xl lg:text-6xl">Web Apps & Bots.</span>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#048eaa] via-blue-500 to-purple-500 animate-gradient text-4xl sm:text-5xl lg:text-6xl pb-2 inline-block">Web Apps & Bots.</span>
                         </h1>
                         
                         <p class="text-base sm:text-lg text-textMuted mb-10 max-w-lg leading-relaxed font-light reveal-up delay-200">
@@ -150,22 +190,22 @@
                         </p>
                         
                         <div class="flex flex-wrap justify-center md:justify-start gap-4 items-center reveal-up delay-300">
-                            <a href="#contact" class="flex items-center gap-2 px-6 py-3 bg-white text-black text-sm font-medium rounded-full hover:bg-neutral-200 hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                            <a href="#contact" class="flex items-center gap-2 px-6 py-3 bg-white text-black text-sm font-medium rounded-full hover:bg-neutral-200 hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.15)]">
                                 <lottie-player data-tgs-src="chat.tgs" autoplay loop mode="normal" style="width: 20px; height: 20px;"></lottie-player>
                                 Get in touch
                             </a>
-                            <a href="https://github.com/vihangafr" target="_blank" class="px-6 py-3 bg-surface/50 border border-border text-textMain text-sm font-medium rounded-full hover:bg-surface hover:border-neutral-500 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center backdrop-blur-sm">
+                            <a href="https://github.com/vihangafr" target="_blank" class="px-6 py-3 bg-surface/50 border border-border text-textMain text-sm font-medium rounded-full hover:bg-surface hover:border-neutral-500 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center backdrop-blur-sm shadow-md">
                                 <lottie-player data-tgs-src="github.tgs" autoplay loop mode="normal" style="width: 20px; height: 20px;" class="mr-2"></lottie-player> GitHub
                             </a>
                         </div>
                     </div>
 
-                    <div class="w-full md:w-2/5 flex justify-center md:justify-end reveal-up delay-400 z-10">
+                    <div class="w-full md:w-2/5 flex justify-center md:justify-end reveal-up delay-400">
                         <div class="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 group mt-8 md:mt-0">
-                            <div class="absolute inset-0 bg-neutral-500/20 rounded-full blur-[50px] group-hover:bg-neutral-400/30 transition-all duration-700"></div>
-                            <div class="absolute inset-0 bg-surface rounded-3xl overflow-hidden border border-border shadow-2xl transform transition-transform duration-700 group-hover:-translate-y-2 group-hover:rotate-1 z-10">
+                            <div class="absolute inset-0 bg-blue-500/20 rounded-full blur-[50px] group-hover:bg-purple-500/30 transition-all duration-700"></div>
+                            <div class="absolute inset-0 bg-surface rounded-3xl overflow-hidden border border-border shadow-2xl transform transition-transform duration-700 group-hover:-translate-y-2 group-hover:rotate-2 z-10">
                                 <img src="/me.png" alt="Vihanga" class="w-full h-full object-cover transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-110" onerror="this.src='https://placehold.co/600x600/111111/444444?text=Vihanga'">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60"></div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-60"></div>
                             </div>
                         </div>
                     </div>
@@ -175,9 +215,14 @@
         </section>
 
         <section id="skills" class="py-24 relative">
-            <div class="max-w-5xl mx-auto px-6 lg:px-8">
-                <div class="mb-12 md:mb-16 reveal-up">
-                    <h2 class="text-3xl font-bold tracking-tighter text-white mb-3 flex items-center gap-3">
+            <!-- Floating Sticker for Skills -->
+            <div class="absolute top-[10%] right-[5%] w-24 h-24 animate-float opacity-70 rotate-[15deg] hidden lg:block z-0 pointer-events-none">
+                <lottie-player data-tgs-src="anim7.tgs" autoplay loop mode="normal" style="width: 100%; height: 100%;"></lottie-player>
+            </div>
+
+            <div class="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
+                <div class="mb-12 md:mb-16 reveal-up text-center md:text-left">
+                    <h2 class="text-3xl font-bold tracking-tighter text-white mb-3 flex items-center justify-center md:justify-start gap-3">
                         Expertise. 
                         <lottie-player data-tgs-src="experience.tgs" autoplay loop mode="normal" style="width: 36px; height: 36px;"></lottie-player>
                     </h2>
@@ -185,11 +230,11 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="group relative p-8 border border-border rounded-3xl bg-surface/30 backdrop-blur-sm hover:bg-surface/80 hover:border-borderHover transition-all duration-500 overflow-hidden reveal-up delay-100">
-                        <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="group relative p-8 border border-border rounded-3xl bg-surface/40 backdrop-blur-md shadow-lg hover:bg-surface/80 hover:border-borderHover transition-all duration-500 overflow-hidden reveal-up delay-100">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                         <div class="relative z-10">
-                            <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center mb-6 text-textMain shadow-sm">
-                                <lottie-player data-tgs-src="anim1.tgs" autoplay loop mode="normal" style="width: 28px; height: 28px;"></lottie-player>
+                            <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center mb-6 text-blue-400 shadow-sm transition-transform group-hover:scale-110 duration-300">
+                                <i class="fa-solid fa-code text-xl"></i>
                             </div>
                             <h3 class="text-xl font-semibold text-white mb-3">Web Development</h3>
                             <p class="text-textMuted text-sm font-light leading-relaxed mb-8">
@@ -205,11 +250,11 @@
                         </div>
                     </div>
 
-                    <div class="group relative p-8 border border-border rounded-3xl bg-surface/30 backdrop-blur-sm hover:bg-surface/80 hover:border-borderHover transition-all duration-500 overflow-hidden reveal-up delay-200">
-                        <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="group relative p-8 border border-border rounded-3xl bg-surface/40 backdrop-blur-md shadow-lg hover:bg-surface/80 hover:border-borderHover transition-all duration-500 overflow-hidden reveal-up delay-200">
+                        <div class="absolute inset-0 bg-gradient-to-br from-green-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                         <div class="relative z-10">
-                            <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center mb-6 text-textMain shadow-sm">
-                                <lottie-player data-tgs-src="anim2.tgs" autoplay loop mode="normal" style="width: 28px; height: 28px;"></lottie-player>
+                            <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center mb-6 text-green-400 shadow-sm transition-transform group-hover:scale-110 duration-300">
+                                <i class="fa-solid fa-robot text-xl"></i>
                             </div>
                             <h3 class="text-xl font-semibold text-white mb-3">Bot Automation</h3>
                             <p class="text-textMuted text-sm font-light leading-relaxed mb-8">
@@ -222,11 +267,11 @@
                         </div>
                     </div>
 
-                    <div class="group relative p-8 border border-border rounded-3xl bg-surface/30 backdrop-blur-sm hover:bg-surface/80 hover:border-borderHover transition-all duration-500 overflow-hidden reveal-up delay-300">
-                        <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="group relative p-8 border border-border rounded-3xl bg-surface/40 backdrop-blur-md shadow-lg hover:bg-surface/80 hover:border-borderHover transition-all duration-500 overflow-hidden reveal-up delay-300">
+                        <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                         <div class="relative z-10">
-                            <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center mb-6 text-textMain shadow-sm">
-                                <lottie-player data-tgs-src="anim3.tgs" autoplay loop mode="normal" style="width: 28px; height: 28px;"></lottie-player>
+                            <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center mb-6 text-purple-400 shadow-sm transition-transform group-hover:scale-110 duration-300">
+                                <i class="fa-solid fa-spider text-xl"></i>
                             </div>
                             <h3 class="text-xl font-semibold text-white mb-3">Web Scraping</h3>
                             <p class="text-textMuted text-sm font-light leading-relaxed mb-8">
@@ -240,24 +285,24 @@
                         </div>
                     </div>
 
-                    <div class="group relative p-8 border border-border rounded-3xl bg-surface/30 backdrop-blur-sm hover:bg-surface/80 hover:border-borderHover transition-all duration-500 overflow-hidden reveal-up delay-400">
-                        <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="group relative p-8 border border-border rounded-3xl bg-surface/40 backdrop-blur-md shadow-lg hover:bg-surface/80 hover:border-borderHover transition-all duration-500 overflow-hidden reveal-up delay-400">
+                        <div class="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                         <div class="relative z-10">
-                            <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center mb-6 text-textMain shadow-sm">
-                                <lottie-player data-tgs-src="anim4.tgs" autoplay loop mode="normal" style="width: 28px; height: 28px;"></lottie-player>
+                            <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center mb-6 text-pink-400 shadow-sm transition-transform group-hover:scale-110 duration-300">
+                                <i class="fa-solid fa-layer-group text-xl"></i>
                             </div>
                             <h3 class="text-xl font-semibold text-white mb-3">Additional Skills</h3>
                             <ul class="space-y-4 text-sm text-textMuted font-light mt-6">
-                                <li class="flex items-center">
-                                    <lottie-player data-tgs-src="anim5.tgs" autoplay loop mode="normal" style="width: 20px; height: 20px;" class="mr-3"></lottie-player> 
+                                <li class="flex items-center group/item">
+                                    <i class="fa-solid fa-bug text-textMain group-hover/item:text-pink-400 w-6 transition-colors"></i> 
                                     Advanced Debugging & Testing
                                 </li>
-                                <li class="flex items-center">
-                                    <lottie-player data-tgs-src="anim6.tgs" autoplay loop mode="normal" style="width: 20px; height: 20px;" class="mr-3"></lottie-player> 
+                                <li class="flex items-center group/item">
+                                    <i class="fa-solid fa-paint-brush text-textMain group-hover/item:text-pink-400 w-6 transition-colors"></i> 
                                     Modern UI / UX Implementation
                                 </li>
-                                <li class="flex items-center">
-                                    <lottie-player data-tgs-src="verify.tgs" autoplay loop mode="normal" style="width: 20px; height: 20px;" class="mr-3"></lottie-player> 
+                                <li class="flex items-center group/item">
+                                    <i class="fa-solid fa-server text-textMain group-hover/item:text-pink-400 w-6 transition-colors"></i> 
                                     Server Deployment & Linux
                                 </li>
                             </ul>
@@ -268,123 +313,130 @@
         </section>
 
         <section id="projects" class="py-24 border-t border-border/50 relative">
-            <div class="max-w-5xl mx-auto px-6 lg:px-8">
-                <div class="mb-12 md:mb-16 reveal-up">
-                    <h2 class="text-3xl font-bold tracking-tighter text-white mb-3 flex items-center gap-3">
+            <div class="absolute top-0 right-0 w-[50%] h-[300px] bg-blue-900/5 blur-[120px] rounded-full pointer-events-none z-0"></div>
+            
+            <!-- Floating Sticker for Projects -->
+            <div class="absolute top-[15%] left-[5%] w-32 h-32 animate-float-delayed opacity-60 rotate-[-10deg] hidden lg:block z-0 pointer-events-none">
+                <lottie-player data-tgs-src="anim8.tgs" autoplay loop mode="normal" style="width: 100%; height: 100%;"></lottie-player>
+            </div>
+
+            <div class="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
+                <div class="mb-12 md:mb-16 reveal-up text-center md:text-left">
+                    <h2 class="text-3xl font-bold tracking-tighter text-white mb-3 flex items-center justify-center md:justify-start gap-3">
                         Recent Works.
                         <lottie-player data-tgs-src="prjects.tgs" autoplay loop mode="normal" style="width: 36px; height: 36px;"></lottie-player>
                     </h2>
                     <p class="text-textMuted text-base font-light">A selection of client projects and personal applications.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <a href="https://buriyastore.lk/" target="_blank" class="project-card block p-6 border border-border rounded-2xl bg-surface/20 hover:bg-surface/60 transition-all duration-300 group reveal-up">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <a href="https://buriyastore.lk/" target="_blank" class="project-card block p-6 border border-border rounded-2xl bg-surface/40 backdrop-blur-sm shadow-md hover:bg-surface/80 hover:shadow-lg transition-all duration-300 group reveal-up">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-lg font-semibold text-white group-hover:text-neutral-300 transition-colors">Buriya Store</h3>
-                            <span class="px-2.5 py-1 bg-white/5 border border-white/10 text-neutral-300 text-[10px] uppercase tracking-widest font-medium rounded-full">Client</span>
+                            <h3 class="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">Buriya Store</h3>
+                            <span class="px-2.5 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-300 text-[10px] uppercase tracking-widest font-medium rounded-full">Client</span>
                         </div>
                         <p class="text-textMuted text-sm font-light mb-6">Digital account selling website with integrated store features.</p>
                         <div class="text-xs text-neutral-500 font-medium flex items-center justify-between">
-                            buriyastore.lk <i class="fas fa-arrow-right -rotate-45 arrow-icon transition-all duration-300 text-neutral-600"></i>
+                            buriyastore.lk <i class="fas fa-arrow-right -rotate-45 arrow-icon transition-all duration-300 text-neutral-400 group-hover:text-white"></i>
                         </div>
                     </a>
 
-                    <a href="https://www.dracostore.lk/" target="_blank" class="project-card block p-6 border border-border rounded-2xl bg-surface/20 hover:bg-surface/60 transition-all duration-300 group reveal-up delay-100">
+                    <a href="https://www.dracostore.lk/" target="_blank" class="project-card block p-6 border border-border rounded-2xl bg-surface/40 backdrop-blur-sm shadow-md hover:bg-surface/80 hover:shadow-lg transition-all duration-300 group reveal-up delay-100">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-lg font-semibold text-white group-hover:text-neutral-300 transition-colors">Draco Store</h3>
-                            <span class="px-2.5 py-1 bg-white/5 border border-white/10 text-neutral-300 text-[10px] uppercase tracking-widest font-medium rounded-full">Client</span>
+                            <h3 class="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">Draco Store</h3>
+                            <span class="px-2.5 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-300 text-[10px] uppercase tracking-widest font-medium rounded-full">Client</span>
                         </div>
                         <p class="text-textMuted text-sm font-light mb-6">E-commerce marketplace platform dedicated to account selling.</p>
                         <div class="text-xs text-neutral-500 font-medium flex items-center justify-between">
-                            dracostore.lk <i class="fas fa-arrow-right -rotate-45 arrow-icon transition-all duration-300 text-neutral-600"></i>
+                            dracostore.lk <i class="fas fa-arrow-right -rotate-45 arrow-icon transition-all duration-300 text-neutral-400 group-hover:text-white"></i>
                         </div>
                     </a>
 
-                    <a href="https://www.beelinecabs.com/" target="_blank" class="project-card block p-6 border border-border rounded-2xl bg-surface/20 hover:bg-surface/60 transition-all duration-300 group reveal-up">
+                    <a href="https://www.beelinecabs.com/" target="_blank" class="project-card block p-6 border border-border rounded-2xl bg-surface/40 backdrop-blur-sm shadow-md hover:bg-surface/80 hover:shadow-lg transition-all duration-300 group reveal-up delay-200">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-lg font-semibold text-white group-hover:text-neutral-300 transition-colors">BEE LINE CABS</h3>
-                            <span class="px-2.5 py-1 bg-white/5 border border-white/10 text-neutral-300 text-[10px] uppercase tracking-widest font-medium rounded-full">Client</span>
+                            <h3 class="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">BEE LINE CABS</h3>
+                            <span class="px-2.5 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-300 text-[10px] uppercase tracking-widest font-medium rounded-full">Client</span>
                         </div>
                         <p class="text-textMuted text-sm font-light mb-6">Full-stack booking and transit service website for a cab company.</p>
                         <div class="text-xs text-neutral-500 font-medium flex items-center justify-between">
-                            beelinecabs.com <i class="fas fa-arrow-right -rotate-45 arrow-icon transition-all duration-300 text-neutral-600"></i>
+                            beelinecabs.com <i class="fas fa-arrow-right -rotate-45 arrow-icon transition-all duration-300 text-neutral-400 group-hover:text-white"></i>
                         </div>
                     </a>
 
-                    <a href="https://tools.dopemusicpromotions.com/" target="_blank" class="project-card block p-6 border border-border rounded-2xl bg-surface/20 hover:bg-surface/60 transition-all duration-300 group reveal-up delay-100">
+                    <a href="https://tools.dopemusicpromotions.com/" target="_blank" class="project-card block p-6 border border-border rounded-2xl bg-surface/40 backdrop-blur-sm shadow-md hover:bg-surface/80 hover:shadow-lg transition-all duration-300 group reveal-up">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-lg font-semibold text-white group-hover:text-neutral-300 transition-colors">CoverArt AI</h3>
-                            <span class="px-2.5 py-1 bg-white/5 border border-white/10 text-neutral-300 text-[10px] uppercase tracking-widest font-medium rounded-full">Client</span>
+                            <h3 class="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">CoverArt AI</h3>
+                            <span class="px-2.5 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-300 text-[10px] uppercase tracking-widest font-medium rounded-full">Client</span>
                         </div>
                         <p class="text-textMuted text-sm font-light mb-6">Automated AI covers generator platform for music promotions.</p>
                         <div class="text-xs text-neutral-500 font-medium flex items-center justify-between">
-                            tools.dopemusicpromotions.com <i class="fas fa-arrow-right -rotate-45 arrow-icon transition-all duration-300 text-neutral-600"></i>
+                            tools.dopemusic... <i class="fas fa-arrow-right -rotate-45 arrow-icon transition-all duration-300 text-neutral-400 group-hover:text-white"></i>
                         </div>
                     </a>
 
-                    <a href="https://audioconverter.dopemusicpromotions.com/" target="_blank" class="project-card block p-6 border border-border rounded-2xl bg-surface/20 hover:bg-surface/60 transition-all duration-300 group reveal-up">
+                    <a href="https://audioconverter.dopemusicpromotions.com/" target="_blank" class="project-card block p-6 border border-border rounded-2xl bg-surface/40 backdrop-blur-sm shadow-md hover:bg-surface/80 hover:shadow-lg transition-all duration-300 group reveal-up delay-100">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-lg font-semibold text-white group-hover:text-neutral-300 transition-colors">Audio Converter</h3>
-                            <span class="px-2.5 py-1 bg-white/5 border border-white/10 text-neutral-300 text-[10px] uppercase tracking-widest font-medium rounded-full">Client</span>
+                            <h3 class="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">Audio Converter</h3>
+                            <span class="px-2.5 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-300 text-[10px] uppercase tracking-widest font-medium rounded-full">Client</span>
                         </div>
                         <p class="text-textMuted text-sm font-light mb-6">Web-based audio conversion tool for fast media formatting.</p>
                         <div class="text-xs text-neutral-500 font-medium flex items-center justify-between">
-                            audioconverter.dopemusicpromotions.com <i class="fas fa-arrow-right -rotate-45 arrow-icon transition-all duration-300 text-neutral-600"></i>
+                            audioconverter... <i class="fas fa-arrow-right -rotate-45 arrow-icon transition-all duration-300 text-neutral-400 group-hover:text-white"></i>
                         </div>
                     </a>
 
-                    <a href="https://tunevet.com/" target="_blank" class="project-card block p-6 border border-border rounded-2xl bg-surface/20 hover:bg-surface/60 transition-all duration-300 group reveal-up delay-100">
+                    <a href="https://tunevet.com/" target="_blank" class="project-card block p-6 border border-border rounded-2xl bg-surface/40 backdrop-blur-sm shadow-md hover:bg-surface/80 hover:shadow-lg transition-all duration-300 group reveal-up delay-200">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-lg font-semibold text-white group-hover:text-neutral-300 transition-colors">Tunevet</h3>
-                            <span class="px-2.5 py-1 bg-white/5 border border-white/10 text-neutral-300 text-[10px] uppercase tracking-widest font-medium rounded-full">Client</span>
+                            <h3 class="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">Tunevet</h3>
+                            <span class="px-2.5 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-300 text-[10px] uppercase tracking-widest font-medium rounded-full">Client</span>
                         </div>
                         <p class="text-textMuted text-sm font-light mb-6">Custom Spotify downloader application built for clients.</p>
                         <div class="text-xs text-neutral-500 font-medium flex items-center justify-between">
-                            tunevet.com <i class="fas fa-arrow-right -rotate-45 arrow-icon transition-all duration-300 text-neutral-600"></i>
+                            tunevet.com <i class="fas fa-arrow-right -rotate-45 arrow-icon transition-all duration-300 text-neutral-400 group-hover:text-white"></i>
                         </div>
                     </a>
 
-                    <a href="https://www.calmaster.xyz/" target="_blank" class="project-card block p-6 border border-border rounded-2xl bg-surface/20 hover:bg-surface/60 transition-all duration-300 group reveal-up">
+                    <a href="https://www.calmaster.xyz/" target="_blank" class="project-card block p-6 border border-border rounded-2xl bg-surface/40 backdrop-blur-sm shadow-md hover:bg-surface/80 hover:shadow-lg transition-all duration-300 group reveal-up">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-lg font-semibold text-white group-hover:text-neutral-300 transition-colors">CalcMaster</h3>
-                            <span class="px-2.5 py-1 bg-white/5 border border-white/10 text-neutral-300 text-[10px] uppercase tracking-widest font-medium rounded-full">Personal</span>
+                            <h3 class="text-lg font-semibold text-white group-hover:text-purple-400 transition-colors">CalcMaster</h3>
+                            <span class="px-2.5 py-1 bg-purple-500/10 border border-purple-500/20 text-purple-300 text-[10px] uppercase tracking-widest font-medium rounded-full">Personal</span>
                         </div>
                         <p class="text-textMuted text-sm font-light mb-6">An all-in-one comprehensive calculation website utility.</p>
                         <div class="text-xs text-neutral-500 font-medium flex items-center justify-between">
-                            calmaster.xyz <i class="fas fa-arrow-right -rotate-45 arrow-icon transition-all duration-300 text-neutral-600"></i>
+                            calmaster.xyz <i class="fas fa-arrow-right -rotate-45 arrow-icon transition-all duration-300 text-neutral-400 group-hover:text-white"></i>
                         </div>
                     </a>
 
-                    <a href="https://dropdl.xyz/" target="_blank" class="project-card block p-6 border border-border rounded-2xl bg-surface/20 hover:bg-surface/60 transition-all duration-300 group reveal-up delay-100">
+                    <a href="https://dropdl.xyz/" target="_blank" class="project-card block p-6 border border-border rounded-2xl bg-surface/40 backdrop-blur-sm shadow-md hover:bg-surface/80 hover:shadow-lg transition-all duration-300 group reveal-up delay-100">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-lg font-semibold text-white group-hover:text-neutral-300 transition-colors">DropDL</h3>
-                            <span class="px-2.5 py-1 bg-white/5 border border-white/10 text-neutral-300 text-[10px] uppercase tracking-widest font-medium rounded-full">Personal</span>
+                            <h3 class="text-lg font-semibold text-white group-hover:text-purple-400 transition-colors">DropDL</h3>
+                            <span class="px-2.5 py-1 bg-purple-500/10 border border-purple-500/20 text-purple-300 text-[10px] uppercase tracking-widest font-medium rounded-full">Personal</span>
                         </div>
                         <p class="text-textMuted text-sm font-light mb-6">An all-in-one downloader tool designed for fast media extraction.</p>
                         <div class="text-xs text-neutral-500 font-medium flex items-center justify-between">
-                            dropdl.xyz <i class="fas fa-arrow-right -rotate-45 arrow-icon transition-all duration-300 text-neutral-600"></i>
+                            dropdl.xyz <i class="fas fa-arrow-right -rotate-45 arrow-icon transition-all duration-300 text-neutral-400 group-hover:text-white"></i>
                         </div>
                     </a>
 
-                    <a href="https://spo.dropdl.xyz/" target="_blank" class="project-card block p-6 border border-border rounded-2xl bg-surface/20 hover:bg-surface/60 transition-all duration-300 group reveal-up">
+                    <a href="https://spo.dropdl.xyz/" target="_blank" class="project-card block p-6 border border-border rounded-2xl bg-surface/40 backdrop-blur-sm shadow-md hover:bg-surface/80 hover:shadow-lg transition-all duration-300 group reveal-up delay-200">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-lg font-semibold text-white group-hover:text-neutral-300 transition-colors">SpoDrop</h3>
-                            <span class="px-2.5 py-1 bg-white/5 border border-white/10 text-neutral-300 text-[10px] uppercase tracking-widest font-medium rounded-full">Personal</span>
+                            <h3 class="text-lg font-semibold text-white group-hover:text-purple-400 transition-colors">SpoDrop</h3>
+                            <span class="px-2.5 py-1 bg-purple-500/10 border border-purple-500/20 text-purple-300 text-[10px] uppercase tracking-widest font-medium rounded-full">Personal</span>
                         </div>
                         <p class="text-textMuted text-sm font-light mb-6">Dedicated web-based Spotify song metadata and media downloader.</p>
                         <div class="text-xs text-neutral-500 font-medium flex items-center justify-between">
-                            spo.dropdl.xyz <i class="fas fa-arrow-right -rotate-45 arrow-icon transition-all duration-300 text-neutral-600"></i>
+                            spo.dropdl.xyz <i class="fas fa-arrow-right -rotate-45 arrow-icon transition-all duration-300 text-neutral-400 group-hover:text-white"></i>
                         </div>
                     </a>
 
-                    <a href="https://idx.zone/" target="_blank" class="project-card block p-6 border border-border rounded-2xl bg-surface/20 hover:bg-surface/60 transition-all duration-300 group reveal-up delay-100">
+                    <a href="https://idx.zone/" target="_blank" class="project-card block p-6 border border-border rounded-2xl bg-surface/40 backdrop-blur-sm shadow-md hover:bg-surface/80 hover:shadow-lg transition-all duration-300 group reveal-up">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-lg font-semibold text-white group-hover:text-neutral-300 transition-colors">IDX Zone</h3>
-                            <span class="px-2.5 py-1 bg-white/5 border border-white/10 text-neutral-300 text-[10px] uppercase tracking-widest font-medium rounded-full">Personal</span>
+                            <h3 class="text-lg font-semibold text-white group-hover:text-purple-400 transition-colors">IDX Zone</h3>
+                            <span class="px-2.5 py-1 bg-purple-500/10 border border-purple-500/20 text-purple-300 text-[10px] uppercase tracking-widest font-medium rounded-full">Personal</span>
                         </div>
                         <p class="text-textMuted text-sm font-light mb-6">A versatile, all-in-one digital utility and productivity tool.</p>
                         <div class="text-xs text-neutral-500 font-medium flex items-center justify-between">
-                            idx.zone <i class="fas fa-arrow-right -rotate-45 arrow-icon transition-all duration-300 text-neutral-600"></i>
+                            idx.zone <i class="fas fa-arrow-right -rotate-45 arrow-icon transition-all duration-300 text-neutral-400 group-hover:text-white"></i>
                         </div>
                     </a>
                 </div>
@@ -392,7 +444,12 @@
         </section>
 
         <section id="contact" class="py-32 relative border-t border-border/50">
-            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-[300px] bg-neutral-800/10 blur-[100px] rounded-full pointer-events-none z-0"></div>
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-[300px] bg-gradient-to-b from-blue-900/10 to-transparent blur-[100px] rounded-full pointer-events-none z-0"></div>
+            
+            <!-- Floating Sticker for Contact -->
+            <div class="absolute bottom-[20%] right-[10%] w-28 h-28 animate-float-fast opacity-80 rotate-[20deg] hidden lg:block z-0 pointer-events-none">
+                <lottie-player data-tgs-src="anim9.tgs" autoplay loop mode="normal" style="width: 100%; height: 100%;"></lottie-player>
+            </div>
             
             <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center reveal-up relative z-10">
                 <div class="flex justify-center mb-8">
@@ -407,22 +464,22 @@
                 </p>
 
                 <div class="flex flex-wrap justify-center gap-4">
-                    <a href="https://wa.me/94782898541" target="_blank" class="group px-6 py-4 bg-surface/50 backdrop-blur-sm border border-border rounded-2xl flex items-center space-x-3 hover:bg-surface hover:border-[#25D366]/50 transition-all duration-300">
+                    <a href="https://wa.me/94782898541" target="_blank" class="group px-6 py-4 bg-surface/60 shadow-lg backdrop-blur-md border border-border rounded-2xl flex items-center space-x-3 hover:bg-surface hover:border-[#25D366]/50 transition-all duration-300">
                         <lottie-player data-tgs-src="whatsapp.tgs" autoplay loop mode="normal" style="width: 24px; height: 24px;"></lottie-player>
                         <span class="text-sm font-medium text-white">WhatsApp</span>
                     </a>
                     
-                    <a href="https://t.me/vihanga_ashz" target="_blank" class="group px-6 py-4 bg-surface/50 backdrop-blur-sm border border-border rounded-2xl flex items-center space-x-3 hover:bg-surface hover:border-[#229ED9]/50 transition-all duration-300">
+                    <a href="https://t.me/vihanga_ashz" target="_blank" class="group px-6 py-4 bg-surface/60 shadow-lg backdrop-blur-md border border-border rounded-2xl flex items-center space-x-3 hover:bg-surface hover:border-[#229ED9]/50 transition-all duration-300">
                         <lottie-player data-tgs-src="telegram.tgs" autoplay loop mode="normal" style="width: 24px; height: 24px;"></lottie-player>
                         <span class="text-sm font-medium text-white">Telegram</span>
                     </a>
 
-                    <a href="https://instagram.com/viha.nn.ga" target="_blank" class="group px-6 py-4 bg-surface/50 backdrop-blur-sm border border-border rounded-2xl flex items-center space-x-3 hover:bg-surface hover:border-[#E1306C]/50 transition-all duration-300">
+                    <a href="https://instagram.com/viha.nn.ga" target="_blank" class="group px-6 py-4 bg-surface/60 shadow-lg backdrop-blur-md border border-border rounded-2xl flex items-center space-x-3 hover:bg-surface hover:border-[#E1306C]/50 transition-all duration-300">
                         <lottie-player data-tgs-src="instgram.tgs" autoplay loop mode="normal" style="width: 24px; height: 24px;"></lottie-player>
                         <span class="text-sm font-medium text-white">Instagram</span>
                     </a>
 
-                    <a href="https://buymeacoffee.com/vihangayt0" target="_blank" class="group px-6 py-4 bg-white text-black shadow-lg shadow-white/10 rounded-2xl flex items-center space-x-3 hover:scale-105 active:scale-95 transition-all duration-300">
+                    <a href="https://buymeacoffee.com/vihangayt0" target="_blank" class="group px-6 py-4 bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.1)] rounded-2xl flex items-center space-x-3 hover:scale-105 active:scale-95 transition-all duration-300">
                         <lottie-player data-tgs-src="support.tgs" autoplay loop mode="normal" style="width: 24px; height: 24px;"></lottie-player>
                         <span class="text-sm font-bold">Support Work</span>
                     </a>
@@ -432,18 +489,18 @@
     </main>
 
     <footer class="border-t border-border/50 py-8 bg-background relative z-10">
-        <div class="max-w-5xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="text-textMuted text-sm font-light text-center md:text-left flex items-center gap-2">
                 <span class="font-medium text-white">Vihanga.</span> &copy; <span id="year"></span>
                 <span class="w-1 h-1 bg-neutral-600 rounded-full mx-1"></span>
                 <span>Sri Lanka</span>
             </div>
             <div class="flex space-x-6 items-center">
-                <a href="https://github.com/vihangafr" target="_blank" class="text-textMuted hover:text-white transition-colors flex items-center">
+                <a href="https://github.com/vihangafr" target="_blank" class="text-textMuted hover:text-white transition-transform hover:scale-110 flex items-center">
                     <span class="sr-only">GitHub</span>
                     <lottie-player data-tgs-src="github.tgs" autoplay loop mode="normal" style="width: 24px; height: 24px;"></lottie-player>
                 </a>
-                <a href="https://instagram.com/viha.nn.ga" target="_blank" class="text-textMuted hover:text-white transition-colors flex items-center">
+                <a href="https://instagram.com/viha.nn.ga" target="_blank" class="text-textMuted hover:text-white transition-transform hover:scale-110 flex items-center">
                     <span class="sr-only">Instagram</span>
                     <lottie-player data-tgs-src="instgram.tgs" autoplay loop mode="normal" style="width: 24px; height: 24px;"></lottie-player>
                 </a>
